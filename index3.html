@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang=”pt-br”> 
+
+<span id="msg"></span> 
+<body>
+<p> Live Server. Buscar imoveis, favor digitar : </p> 
+
+<div class="legend-param milli legend" id="legend_0" style="width: auto!important;"></div>
+      <li class="form-row clearfix">
+        <div class="control-item control-span-6_12">
+        <label class="label-d">Estado</label> 
+	<select class="select-d input-non-fluid" id="cmb_estado" name="cmb_estado"
+         title="Selecione o Estado" onchange="selecionaEstado();"> <option>Selecione</option>
+   <option 
+    value='AC'  >AC</option><option value='AL'  >AL</option><option value='AM'  >AM</option><option  
+    value='AP'  >AP</option><option value='BA'  >BA</option><option value='CE'  >CE</option><option 
+    value='DF'  >DF</option><option value='ES'  >ES</option><option value='GO'  >GO</option><option 
+    value='MA'  >MA</option><option value='MG'  >MG</option><option value='MS'  >MS</option><option 
+    value='MT'  >MT</option><option value='PA'  >PA</option><option value='PB'  >PB</option><option 
+    value='PE'  >PE</option><option value='PI'  >PI</option><option value='PR'  >PR</option><option 
+    value='RJ'  >RJ</option><option value='RN'  >RN</option><option value='RO'  >RO</option><option 
+    value='RR'  >RR</option><option value='RS'  >RS</option><option value='SC'  >SC</option><option 
+    value='SE'  >SE</option><option value='SP'  >SP</option><option value='TO'  >TO</option>
+   </select>
+ </div> <br> 
+                    
+ <form id="myForm">
+   <input type="text1" name='cid'   id='cid'   maxlength='25'   placeholder=' Cidade :'>  
+ </form> <br> 
+
+ <div class="control-item control-span-6_12">
+  <label class="label-d">Modalidade de venda </label> 
+    <select class="select-d input-non-fluid" id="cmb_modalidade" name="cmb_modalidade" 
+     title="Selecione a Modalidade de venda" onchange="carregaListaBairros();">
+    <option>Selecione</option>
+    <option value='4'   >1 Leilao SFI </option><option
+            value='5'   >2 Leilao SFI </option><option  
+            value='2'   >Concorrencia Pubblica</option><option 
+            value='14'  >Leilao SFI - Edital ï¿½nico</option><option 
+            value='21'  >Licitacao Aberta</option><option 
+            value='9'   >Venda Direta FAR</option><option    
+            value='34'  >Venda Direta Online</option><option 
+            value='33'  >Venda Online </option><option 
+            value='30'  >Exercicio de Direito de Preferencia</option>
+   </select>
+</div> <br> 
+
+<div class="control-item control-span-6_12">
+  <label class="label-d">Tipo do imïovel</label>
+  <select class="select-d input-non-fluid" id="cmb_tp_imovel" name="cmb_tp_imovel"
+   title="Selecione o tipo de imimovel.">
+  <option>Selecione</option>
+  <option value='1'  >Casa</option><option value='2'  >Apartamento</option><option value='3'  >Outros</option><option value='4'  >Indiferente</option>
+  </select>
+</div> <br>
+
+<div class="control-item control-span-6_12">
+  <label class="label-d">Quartos</label>
+  <select class="select-d input-non-fluid" id="cmb_quartos" name="cmb_quartos" title="Selecione a quantidade de quartos do imï¿½vel.">
+  <option>Selecione</option>
+  <option value='1'  >1</option><option value='2'  >2</option><option value='3'  >3 ou mais</option><option value='0'  >Indiferente</option>
+  </select>
+</div> <br>
+
+<div class="control-item control-span-6_12">
+  <label class="label-d">Vagas na garagem</label>
+  <select class="select-d input-non-fluid" id="cmb_vg_garagem" name="cmb_vg_garagem" title="Selecione a quantidade de vagas na garagem.">
+  <option>Selecione</option>
+  <option value='1'  >1</option><option value='2'  >2</option><option value='3'  >3 ou mais</option><option value='0'  >Indiferente</option>
+  </select>
+</div> <br>
+
+<div class="control-item control-span-6_12">
+  <label class="label-d">Area util</label>
+  <select class="select-d input-non-fluid" id="cmb_area_util" name="cmb_area_util" title="Selecione a Area útil do imovel." >
+  <option>Selecione</option>
+  <option value='1'  >Ate 60m</option><option value='2'  >De 61 a 90m</option><option value='3'  >De 91 a 120m</option><option value='4'  >De 121 a 200m</option><option value='5'  >De 201 a 300m</option><option value='6'  >Acima de 301m</option><option value='0'  >Indiferente</option>
+   </select>
+</div> <br>
+
+<div class="control-item control-span-6_12">
+  <label class="label-d">Faixa de valor</label>
+  <select class="select-d input-non-fluid" id="cmb_faixa_vlr" name="cmb_faixa_vlr" title="Selecione a faixa de valor do imovel." >
+  <option>Selecione</option>
+              <option value='1'  >Ate R$100.000,00</option><option value='2'  >De R$100.000,01 ate R$200.000,00</option><option value='3'  >De R$200.000,01 ate R$400.000,00</option><option value='4'  >De R$400.000,01 ate R$750.000,00</option><option value='5'  >Acima de R$750.000,00</option><option value='0'  >Indiferente</option>
+  </select>
+</div> <br> 
+
+<script type="text/javascript"> 
+function valida()
+{
+var form = document.getElementById('myForm'); 
+var estado = document.getElementById("cmb_estado").value; 
+var cmb_cidade = form.elements["cid"];  
+var cidade = document.getElementById("cmb_cidade").value; 
+var modalidade = document.getElementById("cmb_modalidade").value; 
+var tipo_imovel = document.getElementById("cmb_tp_imovel").value; 
+var quartos = document.getElementById("cmb_quartos").value; 
+var vagas_garagem = document.getElementById("cmb_vg_garagem").value; 
+var area_util = document.getElementById("cmb_area_util").value; 
+var faixa_valor = document.getElementById("cmb_faixa_vlr").value; 
+
+if (estado == "Selecione") 
+{
+  Alert("Preenchimento obrigatorio dos campos abaixo:") ; 
+  Return ; 
+}
+  else 
+    if (modalidade == "Selecione")  
+    {
+      Alert("Preenchimento obrigatorio dos campos abaixo: ") ;
+    Return ; } 
+    if (tipo_imovel == "Selecione")  
+    {   
+    Alert("Preenchimento obrigatorio dos campos abaixo: ") ;
+    Return ; } 
+    if (quartos == "Selecione" )  
+    {   
+    Alert("Preenchimento obrigatorio dos campos abaixo: ") ;
+    Return ;
+    }   
+    if (vagas_garagem == "Selecione" )  
+    {   
+    Alert("Preenchimento obrigatorio dos campos abaixo: ") ;
+    Return ;
+    }   
+    if (area_util == "Selecione" )  
+    {   
+    Alert("Preenchimento obrigatorio dos campos abaixo: ") ;
+    Return ;
+    }  
+    if (faixa_valor == "Selecione" )  
+    {   
+    Alert("Preenchimento obrigatorio dos campos abaixo: ") ;
+    Return ;
+    }   
+    if (cidade == "Selecione" )  
+    {   
+    Alert("Preenchimento obrigatorio dos campos abaixo: ") ;
+    Return ;
+    }   
+  window.location.href = 'C:\Users\dfcen\Downloads\Nova pasta\index3.html'
+}
+  src="html3.js"   
+</script>
+<button type="submit">Enviar</button>    
+// file:///C:/Users/dfcen/Downloads/Nova%20pasta/index3.html  
+<p>Este é um exemplo de como navegar para a página resultado.</p> 
+ <a href="https://www.google.com" target="_blank">Ir para o Google</a>
+
+</body>
+
+</html> 
+}
+ 
